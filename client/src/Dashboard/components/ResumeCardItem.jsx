@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const ResumeCardItem = ({ resume }) => {
   return (
     <div>
-      <Link to={"/dashboard/resume/" + resume.resumeId + "/edit"}>
+      <Link to={"/dashboard/resume/" + resume.documentId + "/edit"}>
         <div
           className="p-14 bg-secondary 
       flex items-center 
