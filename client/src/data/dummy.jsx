@@ -57,7 +57,7 @@ export default {
     },
     {
       id: 2,
-      universityName: "Western Illinois University",
+      universityName: "Western IllinWois University",
       startDate: "Aug 2018",
       endDate: "Dec:2019",
       degree: "Master",

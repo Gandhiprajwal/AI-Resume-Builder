@@ -41,7 +41,7 @@ const Summery = ({ enableNext }) => {
     try {
       setLoading(true);
       const PROMPT = prompt.replace("{jobTitle}", resumeInfo?.jobTitle);
-      console.log(PROMPT);
+      // console.log(PROMPT);
 
       const result = await AIChatSession.sendMessage(PROMPT);
       const responseText = await result.response.text();
@@ -117,11 +117,17 @@ const Summery = ({ enableNext }) => {
         </form>
       </div>
       {aiGeneratedSummeryList && (
-        <div>
+        <div className="my-5">
           <h2 className="font-bold text-lg">Suggestions</h2>
           {aiGeneratedSummeryList.map((item, index) => (
-            <div key={index}>
-              <h2>{item?.experienceLevel}</h2>
+            <div
+              key={index}
+              onClick={() => setSummery(item?.summary)}
+              className="p-5 shadow-lg my-4 rounded-lg cursor-pointer"
+            >
+              <h2 className="font-bold my-1 text-primary">
+                {item?.experienceLevel}
+              </h2>
               <p>{item?.Summary}</p>
             </div>
           ))}

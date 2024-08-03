@@ -20,8 +20,8 @@ import { AIChatSession } from "../../../../../service/AIModel";
 
 const prompt =
   "position title: {positionTitle}, Depends on position title give me 5-7 bullet points for my experience in resume, give me result in HTML format (give only the points)";
-const RichTextEditor = ({ onRichTextEditorChange, index }) => {
-  const [value, setValue] = useState();
+const RichTextEditor = ({ onRichTextEditorChange, index, defaultValue }) => {
+  const [value, setValue] = useState(defaultValue);
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
   const [loading, setLoading] = useState(false);
   function onChange(e) {

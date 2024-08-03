@@ -2,19 +2,20 @@ import React, { useEffect, useState } from "react";
 import AddResume from "./components/AddResume";
 import { useUser } from "@clerk/clerk-react";
 import GlobalApi from "../../service/GlobalApi";
-import { ResumeCardItem } from "./components/ResumeCardItem";
+import ResumeCardItem from "./components/ResumeCardItem";
 
 const Dashboard = () => {
   const { user } = useUser();
   const [resumeList, setResumeList] = useState([]);
   useEffect(() => {
+    // console.log(user);
     user && GetResumesList();
   }, [user]);
   // Used to Get Users Resume List
   const GetResumesList = () => {
     GlobalApi.GetUserResume(user?.primaryEmailAddress?.emailAddress).then(
       (res) => {
-        // console.log(res);
+        console.log(res.data.data);
         setResumeList(res.data.data);
       }
     );
@@ -31,7 +32,11 @@ const Dashboard = () => {
         <AddResume />
         {resumeList.length > 0 &&
           resumeList.map((resume, index) => (
-            <ResumeCardItem resume={resume} key={index} />
+            <ResumeCardItem
+              resume={resume}
+              key={index}
+              refreshData={GetResumesList}
+            />
           ))}
       </div>
     </div>
