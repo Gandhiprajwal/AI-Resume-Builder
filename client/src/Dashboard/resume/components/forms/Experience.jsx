@@ -13,9 +13,9 @@ const formField = {
   companyName: "",
   city: "",
   state: "",
-  workSummery: "",
   startDate: "",
   endDate: "",
+  workSummery: "",
 };
 function Experience() {
   const [experinceList, setExperinceList] = useState([]);
@@ -44,9 +44,9 @@ function Experience() {
         companyName: "",
         city: "",
         state: "",
-        workSummery: "",
         startDate: "",
         endDate: "",
+        workSummery: "",
       },
     ]);
   };
@@ -62,7 +62,8 @@ function Experience() {
   };
 
   useEffect(() => {
-    // console.log(experinceList);
+    // console.log(params?.resumeId);
+    
     setResumeInfo({
       ...resumeInfo,
       experience: experinceList,
@@ -73,7 +74,7 @@ function Experience() {
     setLoading(true);
     const data = {
       data: {
-        Experience: experinceList.map(({ id, ...rest }) => rest),
+        experience: experinceList.map(({ id, ...rest }) => rest),
       },
     };
 
