@@ -3,8 +3,13 @@ import React from "react";
 import Header from "../components/custom/Header";
 // import { UserButton } from "@clerk/clerk-react";
 import { AtomIcon, Edit, Share2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "../components/ui/button";
+import { useUser } from "@clerk/clerk-react";
 
 export const Home = () => {
+  const { user, isSignedIn, isLoaded } = useUser();
+
   return (
     <div>
       <Header />
@@ -23,7 +28,9 @@ export const Home = () => {
                 New
               </span>{" "}
               <span className="text-sm font-medium">
-                Prajwal Gandhi, All new projects
+                <Link to={"https://prajwalgandhi.onrender.com"} target="_blank">
+                  Prajwal Gandhi, All new projects
+                </Link>
               </span>
               <svg
                 className="ml-2 w-5 h-5"
@@ -49,7 +56,17 @@ export const Home = () => {
                 href="/dashboard"
                 className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary hover:bg-primary focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
               >
-                Get Started
+                {isSignedIn ? (
+                  <div>
+                    <Link to={"/dashboard"}>
+                      <Button className="text-lg">Dashboard</Button>
+                    </Link>
+                  </div>
+                ) : (
+                  <Link to={"/auth/sign-in"}>
+                    <Button className="text-lg">Get Started</Button>
+                  </Link>
+                )}
                 <svg
                   className="ml-2 -mr-1 w-5 h-5"
                   fill="currentColor"
